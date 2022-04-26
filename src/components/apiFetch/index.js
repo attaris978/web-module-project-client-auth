@@ -1,11 +1,12 @@
 
 
-const login = async () => {
+const login = async (creds) => {
+    const {username, password} = creds;
     const token = await fetch('http://localhost:9000/api/login', {
     method: 'POST',
     body: JSON.stringify({
-        username: 'Bloom',
-        password: 'Tech'
+        username,
+        password
     }),
     headers: {
         'Accept': 'application/json',
@@ -13,7 +14,9 @@ const login = async () => {
     }
 })
 .then(response => response.json())
-.then(json => json);
+.then(json => json.token);
+localStorage.setItem('token', token);
+console.log(token, localStorage.getItem('token'));
 return token;
 };
 
