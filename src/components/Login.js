@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { login } from "./apiFetch";
+import {Redirect,useHistory} from 'react-router-dom';
 
-const Login = () => {
+const Login = (props) => {
+    const {history, setLoginStatus} = props;
   const [creds, setCreds] = useState({
     username: "",
     password: "",
@@ -10,6 +12,15 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await login(creds);
+    setCreds(
+        {
+            username: "",
+            password: "",
+          }     
+    );
+    setLoginStatus(true);
+    history.push('/friendList')
+    // <Redirect to='/friendsList' />
   };
 
   return (

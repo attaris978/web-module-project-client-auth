@@ -1,7 +1,12 @@
 .App {
   text-align: center;
+  display:flex;
+  flex-flow:column nowrap;
+  
 }
-
+.app Nav {
+  width: 100vw;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
